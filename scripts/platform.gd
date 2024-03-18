@@ -1,4 +1,5 @@
 extends Area2D
+class_name Platform
 
 @export var jump_force = 800
 
