@@ -20,7 +20,7 @@ func _ready():
 
 func generate_next_level(player_y_pos):
 	var end_of_level_pos = start_platform_y - (generated_platform_count * y_distance_between_platform)
-	var threshold = end_of_level_pos + y_distance_between_platform * 6
+	var threshold = end_of_level_pos + y_distance_between_platform * 8
 	if player_y_pos <= threshold:
 		generate_level(end_of_level_pos, false)
 
