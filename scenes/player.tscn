@@ -7,8 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qc3vf"]
 size = Vector2(37, 20)
 
-[sub_resource type="Animation" id="Animation_igeml"]
-resource_name = "fall"
+[sub_resource type="Animation" id="Animation_f14xq"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -46,8 +46,8 @@ tracks/2/keys = {
 "values": [Vector2(0.35, 0.35)]
 }
 
-[sub_resource type="Animation" id="Animation_f14xq"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_igeml"]
+resource_name = "fall"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
