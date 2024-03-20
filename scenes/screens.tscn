@@ -1,6 +1,83 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3i46tbpd2bqr"]
+[gd_scene load_steps=4 format=3 uid="uid://c3i46tbpd2bqr"]
 
 [ext_resource type="Script" path="res://scripts/screens.gd" id="1_l5i20"]
+[ext_resource type="Texture2D" uid="uid://c0cr31f8jqoa2" path="res://assets/textures/ui/gear.png" id="2_byqo6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2bmax"]
 
 [node name="Screens" type="CanvasLayer"]
 script = ExtResource("1_l5i20")
+
+[node name="Debug" type="Control" parent="."]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConsoleLog" type="Control" parent="Debug" groups=["debug_console"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BlackBG" type="ColorRect" parent="Debug/ConsoleLog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.666667)
+
+[node name="BuildNoLabel" type="Label" parent="Debug/ConsoleLog"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -251.0
+offset_top = 14.0
+offset_right = 254.0
+offset_bottom = 37.0
+grow_horizontal = 2
+text = "Build 0.1.0"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Debug/ConsoleLog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = 41.0
+offset_right = -23.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Debug/ConsoleLog/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LogLabel" type="Label" parent="Debug/ConsoleLog/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_2bmax")
+autowrap_mode = 3
+
+[node name="ToggleConsole" type="TextureButton" parent="Debug"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -41.0
+offset_right = 41.0
+grow_vertical = 0
+texture_normal = ExtResource("2_byqo6")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="Debug/ToggleConsole" to="." method="_on_toggle_console_pressed"]
