@@ -1,12 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3i46tbpd2bqr"]
+[gd_scene load_steps=7 format=3 uid="uid://c3i46tbpd2bqr"]
 
 [ext_resource type="Script" path="res://scripts/screens.gd" id="1_l5i20"]
+[ext_resource type="PackedScene" uid="uid://d4i250kjlgfxe" path="res://scenes/title_screen.tscn" id="2_5pnqc"]
 [ext_resource type="Texture2D" uid="uid://c0cr31f8jqoa2" path="res://assets/textures/ui/gear.png" id="2_byqo6"]
+[ext_resource type="PackedScene" uid="uid://ekwuo2wex6nd" path="res://scenes/pause_screen.tscn" id="4_j3e7m"]
+[ext_resource type="PackedScene" uid="uid://nxrqs7rerayg" path="res://scenes/game_over_screen.tscn" id="4_p4eu6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2bmax"]
 
 [node name="Screens" type="CanvasLayer"]
+layer = 101
 script = ExtResource("1_l5i20")
+
+[node name="TitleScreen" parent="." instance=ExtResource("2_5pnqc")]
+
+[node name="PauseScreen" parent="." instance=ExtResource("4_j3e7m")]
+visible = false
+
+[node name="GameOverScreen" parent="." instance=ExtResource("4_p4eu6")]
+visible = false
 
 [node name="Debug" type="Control" parent="."]
 z_index = 4096
@@ -16,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ConsoleLog" type="Control" parent="Debug" groups=["debug_console"]]
 layout_mode = 1
