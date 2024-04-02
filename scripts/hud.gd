@@ -6,6 +6,8 @@ extends Control
 
 @export var margin = 10
 
+signal pause_game
+
 func _ready():
 	var os_name = OS.get_name()
 	
@@ -27,7 +29,8 @@ func _ready():
 		MyUtility.add_log_message("top bar pos: " + str(top_bar.position))
 
 func _on_pause_btn_pressed():
-	pass # Replace with function body.
+	SoundFX.play(SoundFX.SoundName.Click)
+	pause_game.emit()
 
 func set_score(score: int):
 	score_label.text = "Score: " + str(score)

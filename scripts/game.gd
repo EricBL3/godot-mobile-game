@@ -9,6 +9,7 @@ extends Node2D
 @onready var hud = $UILayer/HUD
 
 signal player_died(score, highscore)
+signal pause_game
 
 var camera_scene = preload("res://scenes/game_camera.tscn")
 var camera: GameCamera = null
@@ -40,6 +41,7 @@ func _ready():
 	hud.visible = false
 	ground_sprite.visible = false
 	hud.set_score(0)
+	hud.pause_game.connect(_on_hud_pause_game)
 	
 	load_score()
 
@@ -103,6 +105,7 @@ func _on_player_died():
 
 func reset_game():
 	hud.set_score(0)
+	hud.visible = false
 	ground_sprite.visible = false
 	level_generator.reset_level()
 	if player:
@@ -123,3 +126,6 @@ func load_score():
 		var file = FileAccess.open(save_file_path, FileAccess.READ)
 		highscore = file.get_var()
 		file.close()
+
+func _on_hud_pause_game():
+	pause_game.emit()

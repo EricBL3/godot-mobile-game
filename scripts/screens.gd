@@ -30,6 +30,7 @@ func register_buttons():
 				button.clicked.connect(_on_button_pressed)
 
 func _on_button_pressed(button):
+	SoundFX.play(SoundFX.SoundName.Click)
 	match button.name:
 		"TitlePlay":
 			change_screen(null)
@@ -37,10 +38,17 @@ func _on_button_pressed(button):
 			start_game.emit()
 		"PauseRetry":
 			change_screen(null)
+			await(get_tree().create_timer(0.5).timeout)
+			unpause_game()
+			start_game.emit()
 		"PauseBack":
 			change_screen(title_screen)
+			unpause_game()
+			delete_level.emit()
 		"PauseClose":
 			change_screen(null)
+			await(get_tree().create_timer(0.5).timeout)
+			unpause_game()
 		"GameOverRetry":
 			change_screen(null)
 			await(get_tree().create_timer(0.5).timeout)
@@ -64,3 +72,9 @@ func game_over(score, highscore):
 	game_over_score_label.text = "Score: " + str(score)
 	game_over_high_score_label.text = "Best: " + str(highscore)
 	change_screen(game_over_screen)
+
+func pause_game():
+	change_screen(pause_screen)
+
+func unpause_game():
+	get_tree().paused = false

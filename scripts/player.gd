@@ -58,6 +58,7 @@ func _physics_process(delta):
 
 func jump(jump_force):
 	velocity.y = -jump_force
+	SoundFX.play(SoundFX.SoundName.Jump)
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
@@ -68,3 +69,4 @@ func die():
 		dead = true
 		col_shape.set_deferred("disabled", true)
 		player_died.emit()
+		SoundFX.play(SoundFX.SoundName.Fall)
