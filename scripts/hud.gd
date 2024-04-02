@@ -2,6 +2,8 @@ extends Control
 
 @onready var top_bar_bg = $TopBarBG
 @onready var top_bar = $TopBar
+@onready var score_label = $TopBar/ScoreLabel
+
 @export var margin = 10
 
 func _ready():
@@ -26,3 +28,6 @@ func _ready():
 
 func _on_pause_btn_pressed():
 	pass # Replace with function body.
+
+func set_score(score: int):
+	score_label.text = "Score: " + str(score)

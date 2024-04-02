@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @onready var animator = $AnimationPlayer
+@onready var col_shape = $CollisionShape2D
 
 @export var speed = 300
 @export var accelerometer_speed = 130
@@ -13,6 +14,9 @@ class_name Player
 var screen_size
 
 var use_accelerometer = false
+var dead = false
+
+signal player_died
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -33,16 +37,17 @@ func _physics_process(delta):
 	if velocity.y > max_fall_velocity:
 		velocity.y = max_fall_velocity
 	
-	if use_accelerometer:
-		velocity.x = Input.get_accelerometer().x * accelerometer_speed
-	else:
-		var dir = Input.get_axis("move_left", "move_right")
-		if dir:
-			velocity.x = dir * speed
+	if !dead:
+		if use_accelerometer:
+			velocity.x = Input.get_accelerometer().x * accelerometer_speed
 		else:
-			# Useful for making the character slide and then stop.
-			# Change the value of stop_offset to make it stop moving slower or faster.
-			velocity.x = move_toward(velocity.x, 0, speed / stop_offset)
+			var dir = Input.get_axis("move_left", "move_right")
+			if dir:
+				velocity.x = dir * speed
+			else:
+				# Useful for making the character slide and then stop.
+				# Change the value of stop_offset to make it stop moving slower or faster.
+				velocity.x = move_toward(velocity.x, 0, speed / stop_offset)
 	
 	move_and_slide()
 	
@@ -53,3 +58,13 @@ func _physics_process(delta):
 
 func jump(jump_force):
 	velocity.y = -jump_force
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	die()
+	
+func die():
+	if !dead:
+		dead = true
+		col_shape.set_deferred("disabled", true)
+		player_died.emit()

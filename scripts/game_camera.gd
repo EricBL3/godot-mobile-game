@@ -10,6 +10,9 @@ var viewport_size
 @export var limit_distance = 420
 
 func _ready():
+	if player:
+		global_position.y = player.global_position.y
+		
 	viewport_size = get_viewport_rect().size
 	global_position.x = viewport_size.x / 2
 	limit_bottom = viewport_size.y
