@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhnxg4uyroig8"]
+[gd_scene load_steps=11 format=3 uid="uid://bhnxg4uyroig8"]
 
 [ext_resource type="Script" path="res://scripts/base_screen.gd" id="1_17u22"]
 [ext_resource type="Texture2D" uid="uid://b6ht8bli6unsu" path="res://assets/textures/ui/Box01.png" id="2_3f7wb"]
@@ -13,6 +13,14 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mugyk"]
 font_size = 36
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7clht"]
+font_size = 26
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3pemo"]
+font_size = 26
 font_color = Color(0, 0, 0, 1)
 
 [node name="ShopScreen" type="Control"]
@@ -114,3 +122,69 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "NEW SKIN"
 label_settings = SubResource("LabelSettings_mugyk")
+
+[node name="ShopResetPurchases" parent="Box" instance=ExtResource("3_2w5bo")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -141.5
+offset_top = -104.0
+offset_right = 141.5
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("5_n554h")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Box/ShopResetPurchases"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.5
+offset_top = -18.0
+offset_right = 103.5
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Reset Purchases"
+label_settings = SubResource("LabelSettings_7clht")
+
+[node name="ShopRestorePurchases" parent="Box" instance=ExtResource("3_2w5bo")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -141.5
+offset_top = -194.0
+offset_right = 141.5
+offset_bottom = -121.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("5_n554h")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Box/ShopRestorePurchases"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.5
+offset_top = -18.0
+offset_right = 103.5
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restore Purchases"
+label_settings = SubResource("LabelSettings_3pemo")

@@ -12,6 +12,8 @@ var current_screen = null
 
 signal start_game
 signal delete_level
+signal reset_purchases
+signal restore_purchases
 
 func _ready():
 	console.visible = false
@@ -64,6 +66,10 @@ func _on_button_pressed(button):
 			change_screen(title_screen)
 		"ShopPurchaseSkin":
 			purchase_skin.emit()
+		"ShopResetPurchases":
+			reset_purchases.emit()
+		"ShopRestorePurchases":
+			restore_purchases.emit()
 
 func change_screen(new_screen):
 	if current_screen:

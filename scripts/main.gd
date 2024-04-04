@@ -15,7 +15,10 @@ func _ready():
 	
 	# IAP signals
 	screens.purchase_skin.connect(_on_screens_purchase_skin)
+	screens.reset_purchases.connect(_on_screens_reset_purchases)
+	screens.restore_purchases.connect(_on_screens_restore_purchases)
 	iap_manager.unlock_new_skin.connect(_iap_manager_unlock_new_skin)
+	
 	
 func _on_screens_start_game():
 	game_in_progress = true
@@ -50,3 +53,9 @@ func _on_screens_purchase_skin():
 
 func _iap_manager_unlock_new_skin():
 	iap_manager.purchase_skin()
+
+func _on_screens_reset_purchases():
+	iap_manager.reset_purchases()
+
+func _on_screens_restore_purchases():
+	iap_manager.restore_purchases()
